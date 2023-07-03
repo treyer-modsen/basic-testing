@@ -1,32 +1,81 @@
-// Uncomment the code below and write your tests
-// import { simpleCalculator, Action } from './index';
+import { simpleCalculator, Action } from './index';
+
+const getRandomArbitrary = (min: number, max: number): number => {
+  return Math.random() * (max - min) + min;
+};
+
+const getRandomOperands = (min: number, max: number): [number, number] => [
+  getRandomArbitrary(min, max),
+  getRandomArbitrary(min, max),
+];
 
 describe('simpleCalculator tests', () => {
   test('should add two numbers', () => {
-    // Write your test here
+    const [a, b] = getRandomOperands(0, 100);
+    const result = simpleCalculator({
+      a,
+      b,
+      action: Action.Add,
+    });
+    expect(result).toBe(a + b);
   });
 
   test('should subtract two numbers', () => {
-    // Write your test here
+    const [a, b] = getRandomOperands(0, 100);
+    const result = simpleCalculator({
+      a,
+      b,
+      action: Action.Subtract,
+    });
+    expect(result).toBe(a - b);
   });
 
   test('should multiply two numbers', () => {
-    // Write your test here
+    const [a, b] = getRandomOperands(0, 100);
+    const result = simpleCalculator({
+      a,
+      b,
+      action: Action.Multiply,
+    });
+    expect(result).toBe(a * b);
   });
 
   test('should divide two numbers', () => {
-    // Write your test here
+    const [a, b] = getRandomOperands(0, 100);
+    const result = simpleCalculator({
+      a,
+      b,
+      action: Action.Divide,
+    });
+    expect(result).toBe(a / b);
   });
 
   test('should exponentiate two numbers', () => {
-    // Write your test here
+    const [a, b] = getRandomOperands(0, 100);
+    const result = simpleCalculator({
+      a,
+      b,
+      action: Action.Exponentiate,
+    });
+    expect(result).toBe(a ** b);
   });
 
   test('should return null for invalid action', () => {
-    // Write your test here
+    const [a, b] = getRandomOperands(0, 100);
+    const result = simpleCalculator({
+      a,
+      b,
+      action: 'wrongActionType',
+    });
+    expect(result).toBeNull();
   });
 
   test('should return null for invalid arguments', () => {
-    // Write your test here
+    const result = simpleCalculator({
+      a: null,
+      b: undefined,
+      action: Action.Exponentiate,
+    });
+    expect(result).toBeNull();
   });
 });
