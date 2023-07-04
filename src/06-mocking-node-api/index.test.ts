@@ -81,6 +81,7 @@ describe('readFileAsynchronously', () => {
     const mockFsReadFile = jest
       .spyOn(fs.promises, 'readFile')
       .mockImplementation(() => Promise.resolve(fakeFileContent));
+
     readFileAsynchronously(fakePathToFile)
       .then((result) => {
         expect(result).toEqual(fakeFileContent);
